@@ -12,7 +12,7 @@
 + Provided examples and cheat sheet of exploratory data analysis in time series data for IoT customers
 + Provided anomaly detection solutions for a customer using Isolation Forest. Provided a workflow to automatically re-train the model by calculating Precision and Recall values from labeled datasets, and deciding the next step
 + Provided time series forecasting solution for a set of customers using LSTM predicting 800 records for 7 days ahead using past 100,000 records. Maximized the forecasting using Change Point Detection to determine breaking points when the data is no longer stationary
-<br>
+
 **Researcher**
 *University of Cincinnati* May2021 - August 2021
 + Collect Android-apps bug reports those have reproducing steps and images.
