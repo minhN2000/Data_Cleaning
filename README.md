@@ -1,4 +1,4 @@
-# Senior Design  Professional Biography
+# Senior Design - **Bypass** Team
 ---
 ## Contact Information 
 ---
@@ -25,4 +25,12 @@ I want to develop a cloud-based web app that does stock prediction using deep re
 
 ## Project Team Member
 ---
-TBA
++ Minh T C Nguyen, major: Computer Science, UC mail Nguye3mt@mail.uc.edu
++ TBA
++ TBA
+
+## Project Topic Area
++ Machine Learning/Deep Learning
++ Reinforcement Deeplearning
++ Web development
++ Cloud computing
