@@ -1,0 +1,10 @@
+- Learn how to code frontend on HTML, CSS, Javascript, and another language like React
+- Learn Java Springboot for backend
+- Configurate cloud. Picking either Amazon, Azure or Google cloud
+- Learn Reinforcement Learning
+- Research on application of Reinforcement Learning, Q Learning, Deep Learning
+- Research on how to get stock data from many resources
+- Draw pages diagram
+- Learn REST API
+- Research on what kind of database is best fit
+- Learn how to design a good website
