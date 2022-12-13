@@ -15,7 +15,7 @@
 
 ## Project Sought
 ---
-I want to develop a cloud-based web app that does stock prediction using deep reinforcement learning.
+I want to develop a cloud-based web app that does data analysis using gpt_3
 
 ## Project Team Member
 ---
