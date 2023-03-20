@@ -20,8 +20,6 @@ I want to develop a cloud-based web app that does data analysis using gpt_3
 ## Project Team Member
 ---
 + Minh T C Nguyen, major: Computer Science, UC mail Nguye3mt@mail.uc.edu
-+ TBA
-+ TBA
 
 ## Project Topic Area
 + Machine Learning/Deep Learning
