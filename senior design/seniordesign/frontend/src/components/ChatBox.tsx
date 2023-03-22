@@ -1,24 +1,44 @@
 import React, { useState } from "react";
-import { Box, TextField, Button, Typography } from "@mui/material";
-
+import { Box, TextField, Button, Typography} from "@mui/material";
+import './ChatBot.css';
 interface ChatMessage {
   text: string;
   sender: "user" | "bot";
 }
 
+
 const ChatBox: React.FC = () => {
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
-  const [inputValue, setInputValue] = useState<string>("");
+    
+    const [messages, setMessages] = useState<ChatMessage[]>([]);
+    const [inputValue, setInputValue] = useState<string>("");
 
-  const handleSubmit = () => {
-    // Add user message to messages array
-    setMessages([...messages, { text: inputValue, sender: "user" }]);
-    setInputValue("");
+    const handleSubmit = async () => {
+        // Add user message to messages array
+        setMessages([...messages, { text: inputValue, sender: "user" }]);
+        setInputValue("");
+    
+        // Send user message to backend and get bot response
+        try {
+        const response = await fetch("/get_response/", {
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ user_message: inputValue }),
+        });
+        const data = await response.json();
+        const botResponse = data.answer;
+    
+        // Update messages array with bot response
+        setMessages((prevMessages) => [
+            ...prevMessages,
+            { text: botResponse, sender: "bot" },
+        ]);
+        } catch (error) {
+        console.error("Error fetching chatbot response:", error);
+        }
+    };
 
-    // Process user input and generate bot response (replace with your chatbot logic)
-    const botResponse = "chatbot's response";
-    setMessages([...messages, { text: inputValue, sender: "user" }, { text: botResponse, sender: "bot" }]);
-  };
 
   return (
     <Box
@@ -52,6 +72,7 @@ const ChatBox: React.FC = () => {
                 onChange={(e) => {
                 // Handle file change event
                 }}
+
             />
         </Box>    
 
@@ -96,6 +117,9 @@ const ChatBox: React.FC = () => {
             component="form"
             display="flex"
             width="100%"
+            sx={{
+                boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)'
+            }}
             onSubmit={(e) => {
             e.preventDefault();
             handleSubmit();
@@ -108,7 +132,7 @@ const ChatBox: React.FC = () => {
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             />
-                <Button type="submit" variant="contained" color="primary" sx={{ ml: 2 }}>
+                <Button type="submit" variant="contained" color="primary" sx={{ ml: 0 }}>
                 Submit
                 </Button>
         </Box>
