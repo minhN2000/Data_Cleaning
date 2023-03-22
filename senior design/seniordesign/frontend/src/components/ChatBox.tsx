@@ -29,62 +29,89 @@ const ChatBox: React.FC = () => {
       height="93vh"
       padding="16px"
     >
-
-      <Box
-        component="ul"
-        flexGrow={1}
-        width="100%"
-        overflow="auto"
-        bgcolor="background.paper"
-        borderRadius="8px"
-        padding="16px"
-        margin="16px 0"
-      >
-        {messages.map((message, index) => (
-          <Box
-          key={index}
-          component="ul"
-          textAlign={message.sender === "user" ? "right" : "left"}
-        >
-          <Box
-            bgcolor={message.sender === "user" ? "primary.main" : "grey.300"}
-            borderRadius="8px"
-            display="inline-block"
-            padding="8px 16px"
-            margin="4px 0"
-          >
-            <Typography
-              variant="body1"
-              display="inline"
-              color={message.sender === "user" ? "primary.contrastText" : "text.primary"}
-            >
-              {message.text}
-            </Typography>
-          </Box>
-        </Box>
-        ))}
-      </Box>
-
-      <Box
+        {/* Box display uploaded file */}
+        <Box
         component="form"
         display="flex"
-        width="100%"
+        justifyContent="center"
+        alignItems="center"
+        width="30%"
+        height="60px"
+        bgcolor="background.paper"
+        borderRadius="8px"
+        margin="16px 0"
+        sx={{ border: "1px solid grey" }}
         onSubmit={(e) => {
-          e.preventDefault();
-          handleSubmit();
+            e.preventDefault();
+            // Handle file upload logic here
         }}
-      >
-        <TextField
-          fullWidth
-          variant="outlined"
-          size="small"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-        />
-        <Button type="submit" variant="contained" color="primary" sx={{ ml: 2 }}>
-          Submit
-        </Button>
-      </Box>
+        >
+            <input
+                type="file"
+                accept=".csv"
+                onChange={(e) => {
+                // Handle file change event
+                }}
+            />
+        </Box>    
+
+        {/* Box display content */}
+        <Box
+            component="ul"
+            flexGrow={1}
+            width="100%"
+            overflow="auto"
+            bgcolor="background.paper"
+            borderRadius="8px"
+            padding="16px"
+            margin="16px 0"
+        >
+            {messages.map((message, index) => (
+                <Box
+                key={index}
+                component="ul"
+                textAlign={message.sender === "user" ? "right" : "left"}
+                >
+                    <Box
+                        bgcolor={message.sender === "user" ? "primary.main" : "grey.300"}
+                        borderRadius="8px"
+                        display="inline-block"
+                        padding="8px 16px"
+                        margin="4px 0"
+                    >
+                        <Typography
+                        variant="body1"
+                        display="inline"
+                        color={message.sender === "user" ? "primary.contrastText" : "text.primary"}
+                        >
+                        {message.text}
+                        </Typography>
+                    </Box>
+                </Box>
+            ))}
+        </Box>
+
+        {/* Box for user enter instruction */}
+        <Box
+            component="form"
+            display="flex"
+            width="100%"
+            onSubmit={(e) => {
+            e.preventDefault();
+            handleSubmit();
+            }}
+        >
+            <TextField
+            fullWidth
+            variant="outlined"
+            size="small"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            />
+                <Button type="submit" variant="contained" color="primary" sx={{ ml: 2 }}>
+                Submit
+                </Button>
+        </Box>
     </Box>
   );
 };
