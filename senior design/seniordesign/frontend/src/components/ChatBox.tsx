@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Box, TextField, Button, Typography} from "@mui/material";
 import './ChatBot.css';
 interface ChatMessage {
@@ -8,23 +8,38 @@ interface ChatMessage {
 
 
 const ChatBox: React.FC = () => {
-    
+    const [submitDisabled, setSubmitDisabled] = useState<boolean>(false);
+    const fileInputRef = useRef<HTMLInputElement>(null); // handle file input
     const [messages, setMessages] = useState<ChatMessage[]>([]);
     const [inputValue, setInputValue] = useState<string>("");
+    const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+    
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files && event.target.files.length > 0) {
+          setUploadedFile(event.target.files[0]);
+        }
+    };
 
     const handleSubmit = async () => {
+        setSubmitDisabled(true);
+
         // Add user message to messages array
         setMessages([...messages, { text: inputValue, sender: "user" }]);
         setInputValue("");
     
+            // Add .csv file
+        const formData = new FormData();
+        formData.append("user_message", inputValue);
+        const file = uploadedFile
+        if (file) {
+            formData.append("file", file);
+        }
+
         // Send user message to backend and get bot response
         try {
         const response = await fetch("/get_response/", {
             method: "POST",
-            headers: {
-            "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ user_message: inputValue }),
+            body: formData,
         });
         const data = await response.json();
         const botResponse = data.answer;
@@ -35,7 +50,9 @@ const ChatBox: React.FC = () => {
             { text: botResponse, sender: "bot" },
         ]);
         } catch (error) {
-        console.error("Error fetching chatbot response:", error);
+            console.error("Error fetching chatbot response:", error);
+        } finally {
+            setSubmitDisabled(false);
         }
     };
 
@@ -69,9 +86,8 @@ const ChatBox: React.FC = () => {
             <input
                 type="file"
                 accept=".csv"
-                onChange={(e) => {
-                // Handle file change event
-                }}
+                ref={fileInputRef}
+                onChange={handleFileChange}
 
             />
         </Box>    
@@ -132,8 +148,8 @@ const ChatBox: React.FC = () => {
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             />
-                <Button type="submit" variant="contained" color="primary" sx={{ ml: 0 }}>
-                Submit
+                <Button type="submit" variant="contained" color="primary" sx={{ ml: 0 }} disabled={submitDisabled}>
+                    Submit
                 </Button>
         </Box>
     </Box>
