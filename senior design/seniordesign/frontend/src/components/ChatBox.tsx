@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect  } from "react";
 import { Box, TextField, Button, Typography} from "@mui/material";
+import ResponseRenderer from "./ResponseRenderer";
+
 import './ChatBot.css';
 interface ChatMessage {
   text: string;
@@ -137,7 +139,11 @@ const ChatBox: React.FC = () => {
                         display="inline"
                         color={message.sender === "user" ? "primary.contrastText" : "text.primary"}
                         >
-                        {message.text}
+                            {message.sender === "user" ? (
+                              message.text
+                            ) : (
+                              <ResponseRenderer response={message.text} />
+                            )}
                         </Typography>
                     </Box>
                 </Box>
