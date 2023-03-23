@@ -1,11 +1,10 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect  } from "react";
 import { Box, TextField, Button, Typography} from "@mui/material";
 import './ChatBot.css';
 interface ChatMessage {
   text: string;
   sender: "user" | "bot";
 }
-
 
 const ChatBox: React.FC = () => {
     const [submitDisabled, setSubmitDisabled] = useState<boolean>(false);
@@ -56,6 +55,22 @@ const ChatBox: React.FC = () => {
         }
     };
 
+    useEffect(() => {
+        const resetPrevFileName = async () => {
+          try {
+            await fetch("/reset_prev_file_name/", {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            });
+          } catch (error) {
+            console.error("Error resetting prev_file_name:", error);
+          }
+        };
+      
+        resetPrevFileName();
+      }, []);
 
   return (
     <Box
@@ -115,6 +130,7 @@ const ChatBox: React.FC = () => {
                         display="inline-block"
                         padding="8px 16px"
                         margin="4px 0"
+                        className="message-container"
                     >
                         <Typography
                         variant="body1"
