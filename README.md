@@ -30,9 +30,8 @@ value and productive learning and working experience.
 
 **Data Science Intern**
 *Losant IoT* May2022 - September 2022
-+ Implemented anomaly detection solutions for a customer using Isolation Forest and one-class SVM including a
-workflow to automatically re-train the model by calculating Precision and Recall values from labeled datasets.
-+ Executed time series forecasting solution for a set of customers using ARIMA or XGBoost models. Maximized the
++ Implemented anomaly detection solutions for a customer using Isolation Forest and one-class SVM.
++ Executed time series forecasting solution using ARIMA or XGBoost models. Maximized the
 forecasting using Change Point Detection to determine breaking points when the data is no longer stationary.
 
 **Researcher**
