@@ -1,4 +1,4 @@
-# Senior Design - **Bypass** Team
+# Senior Design - **None** Team
 ---
 ## Contact Information 
 ---
