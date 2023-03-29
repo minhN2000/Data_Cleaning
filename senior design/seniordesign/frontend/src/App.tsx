@@ -13,6 +13,7 @@ import { useMediaQuery } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 function App() {
 
@@ -32,6 +33,11 @@ function App() {
     localStorage.setItem('token', token);
   };
   
+  const meta = {
+    title: "Data Cleaning",
+    description: "Welcome to data cleaning with Minhg Nguyen!",
+  };
+
   const setExpirationDate = (expiration: string) => {
     localStorage.setItem('expiration', expiration)
   }
@@ -78,9 +84,13 @@ function App() {
   }, [authenticated]);
 
   return (
-    <>
+    <HelmetProvider>
         <CssBaseline />
           <BrowserRouter>
+          <Helmet>
+            <title>{meta.title}</title>
+            <meta name="description" content={meta.description} />
+          </Helmet>
             <Routes>
               <Route
                 path="/"
@@ -112,11 +122,7 @@ function App() {
               />
             </Routes>
           </BrowserRouter>
-
-        
-      
-
-    </>
+    <HelmetProvider/>
   );
 }
 
