@@ -3,16 +3,30 @@ import { useNavigate } from 'react-router-dom';
 import { useTheme } from "@mui/material/styles";
 import { Box, TextField, Button, Typography, Link } from '@mui/material';
 
+/**
+ * Interface representing the props for the SignIn component.
+ * @interface SignInProps
+ * @property {(token: string, expiration: string) => void} onLoginSuccess - A function to be called after a successful login.
+ */
 interface SignInProps {
   onLoginSuccess: (token: string, expiration: string) => void;
 }
 
+/**
+ * SignIn component for user authentication.
+ * @param {SignInProps} props - The props for the SignIn component.
+ * @returns {React.FC} - The SignIn component.
+ */
 const SignIn: React.FC<SignInProps> = ({ onLoginSuccess }) => {
   const theme = useTheme();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  /**
+   * Handles form submission, sends the login request to the server, and updates the state.
+   * @param {React.FormEvent<HTMLFormElement>} event - The form submission event.
+   */
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {

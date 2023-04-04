@@ -5,13 +5,21 @@ import './ChatBot.css';
 import ResponseRenderer from "./ResponseRenderer";
 
 
-
+/**
+ * Interface representing a chat message.
+ * @interface ChatMessage
+ * @property {string} text - The message text.
+ * @property {"user" | "bot"} sender - The message sender.
+ */
 interface ChatMessage {
   text: string;
   sender: "user" | "bot";
 }
 
-
+/**
+ * ChatBox component for user interaction with the chatbot.
+ * @returns {React.FC} - The ChatBox component.
+ */
 const ChatBox: React.FC = () => {
 
   const theme = useTheme();
@@ -21,12 +29,19 @@ const ChatBox: React.FC = () => {
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [submitDisabled, setSubmitDisabled] = useState<boolean>(false); // disable submit button, allow user submit 1 message per response
 
+  /**
+   * Handle file input change event.
+   * @param {React.ChangeEvent<HTMLInputElement>} event - The file input change event.
+   */
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       setUploadedFile(event.target.files[0]);
     }
   };
 
+  /**
+   * Handles the submit action by sending the user message to the backend and updating the message list.
+   */
   const handleSubmit = async () => {
     setSubmitDisabled(true);
 
@@ -63,6 +78,9 @@ const ChatBox: React.FC = () => {
     }
   };
 
+  /**
+   * Reset the previous file name on the server side when the component is mounted.
+   */
   useEffect(() => {
     const resetPrevFileName = async () => {
       try {
@@ -195,13 +213,3 @@ const ChatBox: React.FC = () => {
 };
 
 export default ChatBox;
-
-// function getCookie(name: string): string | null {
-//     const value = "; " + document.cookie;
-//     const parts = value.split("; " + name + "=");
-//     if (parts.length === 2) {
-//       const cookieValue = parts.pop()?.split(";").shift();
-//       return cookieValue ? cookieValue : null;
-//     }
-//     return null;
-//   }

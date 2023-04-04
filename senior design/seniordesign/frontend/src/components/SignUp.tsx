@@ -4,6 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { useTheme } from "@mui/material/styles";
 import { Box, TextField, Button, Typography, Link } from '@mui/material';
 
+/**
+ * SignUp component for user registration.
+ * @returns {React.FC} - The SignUp component.
+ */
 const SignUp: React.FC = () => {
   const theme = useTheme();
   const navigate = useNavigate();
@@ -11,6 +15,10 @@ const SignUp: React.FC = () => {
   const [password, setPassword] = useState('');
   const [retypePassword, setRetypePassword] = useState('');
   
+  /**
+   * Handles form submission, sends the signup request to the server, and processes the response.
+   * @param {React.FormEvent<HTMLFormElement>} event - The form submission event.
+   */
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {

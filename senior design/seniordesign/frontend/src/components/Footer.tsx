@@ -2,6 +2,10 @@ import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { useTheme } from "@mui/material/styles";
 
+/**
+ * Footer component that displays the app footer.
+ * @returns {React.FC} - The Footer component.
+ */
 const Footer: React.FC = () => {
   const theme = useTheme();
   return (
