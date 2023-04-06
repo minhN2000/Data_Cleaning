@@ -1,12 +1,9 @@
 # Senior Design - **None** Team
----
 ## Contact Information 
----
 **Name:** Minh T C Nguyen
 **UC mail:** Nguye3mt@mail.uc.edu
 
 ## Co-op Experience 
----
 **Machine Learning Engineer Intern in Bioinformatic**
 *Cincinnati Children’s Hospital Medical Center* December 2022 - Present
 + In progress
@@ -41,11 +38,11 @@ forecasting using Change Point Detection to determine breaking points when the d
 + Learned Machine Learning programming skills and projected features using t-SNE, UMAP, PCA, and Heatmap.
 
 ## Project Thought
----
+
 I want to develop a cloud-based web app that does data analysis using GPT-3
 
 ## Project Team Member
----
+
 + Minh T C Nguyen, major: Computer Science, UC mail Nguye3mt@mail.uc.edu
 
 ## Project Topic Area
